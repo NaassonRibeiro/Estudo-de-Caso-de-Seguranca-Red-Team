@@ -23,7 +23,7 @@ O objetivo desta fase foi contornar o "escudo" da Cloudflare para encontrar os e
     * Adicionalmente, a versão do **Laravel (7.23.0)** é vulnerável à **CVE-2020-24940**, outra falha crítica de RCE via desserialização insegura herdada de um componente do Symfony.
 * O WAF da Cloudflare não poderia mitigar essas falhas, que confirmam um caminho direto para o comprometimento total do servidor por diferentes meios.
 * **Evidência:**
-    ![Prova de Conceito Sanitizada - Erro na Aplicação Web](./evidence/webapp-cloudflare-vulneravel.jpg)
+    ![Prova de Conceito Sanitizada - Erro na Aplicação Web](./evidence/webapp-vulneravel.jpg)
 
 ### Finding 1.2: (ALTO) Infraestrutura Legada Diretamente Exposta com Múltiplas Vulnerabilidades Críticas
 * **Descrição:** A investigação de OSINT permitiu a descoberta de servidores legados que **não estavam protegidos pela Cloudflare**. A varredura nestes IPs revelou múltiplos serviços (Apache/IIS, SNMP) significativamente desatualizados e vulneráveis.
