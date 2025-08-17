@@ -27,7 +27,7 @@ Uma nova investigação de OSINT foi iniciada do zero. Utilizando a análise da 
 ### Finding 2.2: (ALTO) Múltiplos Dispositivos de Rede Expostos e Mal Configurados
 * **Descrição:** A varredura da infraestrutura revelou pelo menos dois dispositivos de rede críticos expostos e com serviços vulneráveis.
 * **Dispositivo 1: Roteador Tenda Wireless (GoAhead-webs)**
-    * Um roteador Tenda foi encontrado exposto. O servidor web `GoAhead`, utilizado em muitos dispositivos embarcados, possui um histórico de vulnerabilidades críticas conhecidas.
+    * Um roteador Tenda foi encontrado com sua interface de gerenciamento web exposta na porta não-padrão 1984/tcp, uma tática de "segurança por obscuridade". A exposição deste painel administrativo na internet permite que um atacante tente ataques de força bruta (brute-force) ou explore vulnerabilidades conhecidas no servidor GoAhead-webs para obter controle total do dispositivo.
 * **Dispositivo 2: Roteador MikroTik (RouterOS RB750Gr3)**
     * O roteador foi identificado com o hostname `Nome_da_empresa - almoxarifado`, confirmando sua associação.
     * Duas portas de alto risco estavam abertas para a internet:
