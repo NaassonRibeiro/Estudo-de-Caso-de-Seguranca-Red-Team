@@ -23,7 +23,7 @@ O objetivo desta fase foi contornar o "escudo" da Cloudflare para encontrar os e
     * Adicionalmente, a versão do **Laravel (7.23.0)** é vulnerável à **CVE-2020-24940**, outra falha crítica de RCE via desserialização insegura herdada de um componente do Symfony.
 * O WAF da Cloudflare não poderia mitigar essas falhas, que confirmam um caminho direto para o comprometimento total do servidor por diferentes meios.
 * **Evidência:**
-    ![Prova de Conceito Sanitizada - Erro na Aplicação Web](./evidence/webapp-cloudflare-vulneravel.png)
+    ![Prova de Conceito Sanitizada - Erro na Aplicação Web](./evidence/webapp-cloudflare-vulneravel.jpg)
 
 ### Finding 1.2: (ALTO) Infraestrutura Legada Diretamente Exposta com Múltiplas Vulnerabilidades Críticas
 * **Descrição:** A investigação de OSINT permitiu a descoberta de servidores legados que **não estavam protegidos pela Cloudflare**. A varredura nestes IPs revelou múltiplos serviços (Apache/IIS, SNMP) significativamente desatualizados e vulneráveis.
@@ -32,12 +32,12 @@ O objetivo desta fase foi contornar o "escudo" da Cloudflare para encontrar os e
   * **Gerenciamento de Rede (SNMP):** O serviço estava exposto e vulnerável a falhas que poderiam levar ao vazamento de informações da rede interna.
 * **Impacto:** O servidor representava um ponto de entrada de baixo esforço e alto impacto. Um atacante poderia obter controle total deste servidor e usá-lo como um pivô para atacar a rede interna, contornando completamente o WAF.
 * **Evidência:**
-    ![Prova de Conceito Sanitizada - Scan em Servidor Legado](./evidence/scan-infraestrutura-legada.png)
+    ![Prova de Conceito Sanitizada - Scan em Servidor Legado](./evidence/scan-infraestrutura-legada.jpg)
 
 ### Finding 1.3: (ALTO) Servidor DNS com Nginx Vulnerável (CVE-2021-23017)
 * **Descrição:** Também fora do perímetro da Cloudflare, foi identificado um servidor DNS executando Nginx 1.20.1, vulnerável à CVE-2021-23017.
 * **Impacto:** A exploração poderia levar a uma Negação de Serviço (DoS), afetando a resolução de nomes para os serviços da empresa.
-    ![Prova de Conceito Sanitizada - Servidor DNS Vulnerável](./evidence/servidor-dns-vulneravel.png)
+    ![Prova de Conceito Sanitizada - Servidor DNS Vulnerável](./evidence/servidor-dns-vulneravel.jpg)
 
 ## 4. Conclusão da Análise 1
 Esta análise destaca um erro comum de postura de segurança: a **falsa sensação de segurança** gerada por uma única camada de proteção, como a Cloudflare. Enquanto o WAF mitigava ataques básicos, a aplicação continha falhas de lógica e, mais criticamente, rodava em uma plataforma com vulnerabilidades de RCE conhecidas, ativamente exploradas, e a infraestrutura legada permanecia completamente exposta.
