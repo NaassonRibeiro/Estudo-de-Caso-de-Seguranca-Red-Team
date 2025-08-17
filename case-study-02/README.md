@@ -35,6 +35,7 @@ Uma nova investigação de OSINT foi iniciada do zero. Utilizando a análise da 
         * **2000/tcp (MikroTik Bandwidth-Test):** Este serviço é notoriamente abusado para ataques de negação de serviço (DoS) por amplificação, permitindo que atacantes usem o roteador da empresa para atacar outros alvos na internet.
 * **Impacto:** A exposição desses dispositivos criava múltiplos pontos de entrada para a rede interna e expunha a empresa a riscos de vazamento de informações, negação de serviço e potencial comprometimento da infraestrutura.
 * **Evidência:**
+
     ![Prova de Conceito Sanitizada - Scan no MikroTik e Roteador Tenda](./evidence/Mikrotik-vulneravel.jpg)
 
 
