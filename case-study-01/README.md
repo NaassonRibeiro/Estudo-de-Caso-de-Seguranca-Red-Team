@@ -35,9 +35,9 @@ A investigação da infraestrutura foi realizada a partir do `WHOIS` e do mapeam
 * **Evidência:**
     ![Prova de Conceito Sanitizada - Scan em Servidor Legado](./evidence/Servidor-vulneravel.png)
 
-### Finding 1.3: (MÉDIO) Servidor DNS com Serviço Vulnerável Exposto
-* **Descrição:** Durante a fase de OSINT, foi identificado um servidor de DNS da organização executando uma versão do Nginx com uma vulnerabilidade conhecida publicamente (CVE-[código da CVE]).
-* **Impacto:** A exploração dessa CVE poderia levar à negação de serviço no DNS, vazamento de informações da infraestrutura ou ser usada como pivô para ataques internos.
+### Finding 1.3: (ALTO) Servidor DNS com Nginx Vulnerável a Negação de Serviço (CVE-2021-23017)
+* **Descrição:** Durante a fase de OSINT, foi identificado um servidor de DNS da organização executando **Nginx na versão 1.20.1**. Esta versão é vulnerável à **CVE-2021-23017**, uma falha no resolver de DNS.
+* **Impacto:** Um atacante poderia enviar uma resposta DNS especialmente criada para este servidor, causando o travamento (`crash`) do processo worker do Nginx. Isso resultaria em uma **Negação de Serviço (DoS)**, tornando o servidor DNS indisponível e potencialmente afetando a resolução de nomes para todos os serviços da empresa que dependem dele.
 
 ## 4. Conclusão da Análise 1
 A investigação demonstrou que, mesmo por trás de camadas de proteção, vulnerabilidades críticas podem existir. A abordagem combinada de análise manual da aplicação e OSINT profundo foi essencial para descobrir riscos que scanners automatizados não identificariam.
