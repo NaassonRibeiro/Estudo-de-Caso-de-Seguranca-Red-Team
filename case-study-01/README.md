@@ -16,9 +16,12 @@ O objetivo desta fase foi contornar o "escudo" da Cloudflare para encontrar os e
 
 ## 3. Descobertas (Findings)
 
-### Finding 1.1: (CRÍTICO) Exposição de Versão Vulnerável do PHP Levando a RCE (CVE-2024-4577)
-* **Descrição:** Mesmo operando por trás do WAF da Cloudflare, uma falha de lógica na aplicação foi explorada. Ao forçar uma requisição `GET` em uma rota que esperava `POST`, foi possível causar um `crash` e expor a página de debug do PHP, revelando a versão exata em uso: **PHP 7.3.33** junto com outras tecnologias como Laravel 7.23.0, MySQL, paths de diretórios e trechos de código-fonte.
-* **Impacto:** Esta versão do PHP está descontinuada e é comprovadamente vulnerável à **CVE-2024-4577**, uma falha de Injeção de Comando de OS de severidade **Crítica (CVSS 9.3)**. Esta vulnerabilidade, que está sendo ativamente explorada na internet, permite que um atacante remoto e não autenticado execute comandos arbitrários no sistema operacional. Portanto, o vazamento da versão é a **confirmação de um caminho direto para o comprometimento total do servidor (RCE)**, uma falha que o WAF não poderia mitigar.
+### Finding 1.1: (CRÍTICO) Exposição de Versões de Software com Múltiplos Vetores de RCE
+* **Descrição:** Mesmo operando por trás do WAF da Cloudflare, uma falha de lógica na aplicação foi explorada. Ao forçar uma requisição `GET` em uma rota que esperava `POST`, foi possível causar um `crash` e expor a página de debug do PHP, revelando as versões exatas de componentes críticos: **PHP 7.3.33** e **Laravel 7.23.0** (que utiliza **Symfony**), juntamente com o bando de dados (MySQL), paths de diretórios e trechos de código-fonte.
+* **Impacto:** O vazamento das versões confirmou múltiplos vetores de RCE (Execução Remota de Código) de alta criticidade:
+    * A versão do **PHP (7.3.33)** é vulnerável à **CVE-2024-4577**, uma falha de Injeção de Comando de OS (CVSS 9.3) ativamente explorada.
+    * Adicionalmente, a versão do **Laravel (7.23.0)** é vulnerável à **CVE-2020-24940**, outra falha crítica de RCE via desserialização insegura herdada de um componente do Symfony.
+* O WAF da Cloudflare não poderia mitigar essas falhas, que confirmam um caminho direto para o comprometimento total do servidor por diferentes meios.
 * **Evidência:**
     ![Prova de Conceito Sanitizada - Erro na Aplicação Web](./evidence/webapp-cloudflare-vulneravel.png)
 
