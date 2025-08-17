@@ -12,7 +12,7 @@ A análise combinou uma exploração manual e criativa da aplicação web com um
 A investigação sobre o desenvolvedor da aplicação web, identificado no rodapé do alvo, levantou suspeitas sobre o uso de tecnologias desatualizadas, motivando uma análise mais profunda em busca de falhas de configuração na aplicação principal. A manipulação de rotas `HTTP/HTTPS` em cenários incomuns foi a técnica escolhida para tentar forçar a aplicação a um estado de erro.
 
 ### Fase 2: OSINT para Mapeamento da Infraestrutura Real
-O objetivo desta fase foi contornar o "escudo" da Cloudflare para encontrar os endereços de IP reais e a infraestrutura legada da empresa. A partir do `WHOIS` e do mapeamento do AS Number (ASN), foi possível identificar ranges de IP históricos e servidores que não estavam sob a proteção do WAF, tornando-os alvos diretos para uma análise mais aprofundada.
+O objetivo desta fase foi contornar o "escudo" da Cloudflare para encontrar os endereços de IP reais e a infraestrutura legada da empresa. A partir de ferramentas online como `WHOIS`, `Archive.org` e do mapeamento do AS Number (ASN), foi possível identificar ranges de IP históricos e servidores que não estavam sob a proteção do WAF, tornando-os alvos diretos para uma análise mais aprofundada.
 
 ## 3. Descobertas (Findings)
 
