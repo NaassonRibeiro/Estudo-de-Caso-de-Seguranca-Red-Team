@@ -1,41 +1,43 @@
-# Estudo de Caso 01: Avaliação de Vulnerabilidade em Aplicação Web e Infraestrutura Externa
+# Estudo de Caso 01: Bypass de WAF e Descoberta de Infraestrutura Exposta
 
 ## 1. Objetivo e Escopo
-O objetivo desta análise autorizada era identificar vulnerabilidades na aplicação web principal e na infraestrutura externa de uma empresa corporativa, utilizando uma abordagem black box.
+
+O objetivo desta análise foi avaliar a postura de segurança externa de uma empresa corporativa através de uma abordagem de duas frentes:
+1.  Análise da aplicação web principal, que operava sob a proteção de um WAF da **Cloudflare**.
+2.  Busca por infraestrutura de rede e servidores legados diretamente expostos na internet, fora do perímetro da Cloudflare.
 
 ## 2. Metodologia: Uma Abordagem Investigativa
-A análise combinou uma exploração manual e criativa da aplicação web com uma fase de OSINT e varredura de rede na infraestrutura externa, evitando o uso de scanners automatizados intrusivos.
 
-### Fase 1: Reconhecimento e Hipótese Inicial (Pivô)
-A investigação sobre o desenvolvedor da aplicação web acessível no rodapé do alvo levantou suspeitas sobre o uso de tecnologias desatualizadas, motivando uma análise mais profunda em busca de falhas de configuração.
+A análise combinou uma exploração manual e criativa da aplicação web com uma fase de OSINT e varredura de rede, evitando o uso de scanners automatizados intrusivos que seriam bloqueados pelo WAF.
 
-### Fase 2: Exploração Manual da Aplicação Web
-A manipulação de rotas `HTTP/HTTPS` em cenários incomuns forçou a aplicação a um estado de erro, contornando as proteções e expondo a página de debug nativa do PHP.
+### Fase 1: Análise da Aplicação Web (Protegida pela Cloudflare)
+A investigação inicial focou em encontrar falhas de lógica na aplicação que não seriam detectadas por regras de WAF padrão. A suspeita, levantada pela análise do desenvolvedor do site acessível no rodapé do alvo, era de que a aplicação em si poderia ter vulnerabilidades, apesar da forte camada de proteção externa. A manipulação de rotas `HTTP/HTTPS` em cenários incomuns foi a técnica escolhida para tentar forçar a aplicação a um estado de erro.
 
-### Fase 3: OSINT e Análise da Infraestrutura Externa
-A partir do `WHOIS` e do mapeamento do ASN, foram identificados e escaneados servidores legados da organização, utilizando ferramentas online e técnicas de OpSec (VPN, User-Agent Spoofing).
+### Fase 2: OSINT para Mapeamento da Infraestrutura Real
+O objetivo desta fase foi contornar o "escudo" da Cloudflare para encontrar os endereços de IP reais e a infraestrutura legada da empresa. A partir do `WHOIS` e do mapeamento do AS Number (ASN), foi possível identificar ranges de IP históricos e servidores que não estavam sob a proteção do WAF, tornando-os alvos diretos para uma análise mais aprofundada.
 
 ## 3. Descobertas (Findings)
 
-### Finding 1.1: (CRÍTICO) Exposição de Informações Sensíveis na Aplicação Web
-* **Descrição:** A exploração de uma falha na lógica de roteamento (`GET` vs `POST`) expôs a página de debug do PHP com versões de software (PHP 7.3.33, Laravel 7.23.0), paths de diretórios e trechos de código-fonte.
-* **Impacto:** As informações expostas poderiam ser usadas para encontrar exploits conhecidos (RCE) e mapear a aplicação para ataques futuros.
+### Finding 1.1: (CRÍTICO) Falha de Lógica na Aplicação Web Resultando em Exposição de Informações (Bypass de WAF)
+* **Descrição:** Mesmo operando por trás do WAF da **Cloudflare**, a aplicação era vulnerável a uma falha de lógica. Ao forçar uma requisição `GET` em uma rota que esperava `POST`, foi possível causar um `crash` e expor a página de debug do PHP com versões de software (PHP 7.3.33, Laravel 7.23.0), paths de diretórios e código-fonte.
+* **Impacto:** Este achado demonstrou que a confiança no WAF era insuficiente, pois falhas na lógica da aplicação não são mitigadas por proteções padrão. As informações expostas poderiam ser usadas para encontrar exploits conhecidos (RCE).
 * **Evidência:**
     ![Prova de Conceito Sanitizada - Erro na Aplicação Web](./evidence/webapp-vulneravel.png)
 
-### Finding 1.2: (ALTO) Exposição de Infraestrutura de Servidores Legados com Múltiplas Vulnerabilidades Críticas
-* **Descrição:** A varredura de portas no servidor legado revelou múltiplos serviços expostos à internet, incluindo servidores web (Apache/IIS) e de gerenciamento (SNMP). A análise indicou que estes serviços estavam significativamente desatualizados.
+### Finding 1.2: (ALTO) Infraestrutura Legada Diretamente Exposta com Múltiplas Vulnerabilidades Críticas
+* **Descrição:** A investigação de OSINT permitiu a descoberta de servidores legados que **não estavam protegidos pela Cloudflare**. A varredura nestes IPs revelou múltiplos serviços (Apache/IIS, SNMP) significativamente desatualizados e vulneráveis.
 * **Destaques das Vulnerabilidades Encontradas:**
-  * **Servidores Web (Apache/IIS):** Foram identificadas múltiplas falhas críticas, incluindo vulnerabilidades de **Path Traversal e Execução Remota de Código** (ex: CVE-2021-41773, MS12-073).
-  * **Gerenciamento de Rede (SNMP):** O serviço SNMP estava exposto e vulnerável a falhas que poderiam levar ao vazamento de informações detalhadas sobre a rede interna./
-* **Impacto:** O servidor representava um ponto de entrada de baixo esforço e alto impacto. Um atacante poderia obter controle total deste servidor e usá-lo como um pivô para atacar a rede interna da empresa.
+  * **Servidores Web:** Foram identificadas falhas críticas de **Path Traversal e Execução Remota de Código** (ex: CVE-2021-41773).
+  * **Gerenciamento de Rede (SNMP):** O serviço estava exposto e vulnerável a falhas que poderiam levar ao vazamento de informações da rede interna.
+* **Impacto:** Este servidor representava um ponto de entrada de baixo esforço e alto impacto. Um atacante poderia obter controle total deste servidor e usá-lo como um pivô para atacar a rede interna, contornando completamente o WAF.
 * **Evidência:**
-    ![Prova de Conceito Sanitizada - Scan em Servidor Legado](./evidence/Lista-Vulnerabildiades.png)
+    ![Prova de Conceito Sanitizada - Scan em Servidor Legado](./evidence/vulnerabilidades-encontrada-rede.png)
 
-### Finding 1.3: (ALTO) Servidor DNS com Nginx Vulnerável a Negação de Serviço (CVE-2021-23017)
-* **Descrição:** Foi identificado um servidor DNS executando Nginx 1.20.1, vulnerável à CVE-2021-23017, uma falha no resolver de DNS.
-* **Impacto:** A exploração poderia levar a uma Negação de Serviço (DoS), tornando o servidor DNS indisponível e afetando serviços da empresa que dependem dele.
+### Finding 1.3: (ALTO) Servidor DNS com Nginx Vulnerável (CVE-2021-23017)
+* **Descrição:** Também fora do perímetro da Cloudflare, foi identificado um servidor DNS executando Nginx 1.20.1, vulnerável à CVE-2021-23017.
+* **Impacto:** A exploração poderia levar a uma Negação de Serviço (DoS), afetando a resolução de nomes para os serviços da empresa.
     ![Prova de Conceito Sanitizada - Scan em Servidor Legado](./evidence/Ngnix-vulneravel.png)
 
 ## 4. Conclusão da Análise 1
-A investigação demonstrou que a confiança em proteções de borda (WAF) pode mascarar falhas críticas internas. A combinação de análise manual e OSINT foi essencial para revelar riscos sistêmicos tanto na aplicação quanto na infraestrutura legada.
+
+Esta análise destaca um erro comum de postura de segurança: a **falsa sensação de segurança** gerada por uma única camada de proteção, como a Cloudflare. Enquanto o WAF mitigava ataques básicos, a aplicação continha falhas de lógica exploráveis e, mais criticamente, a infraestrutura legada e desprotegida da empresa permanecia completamente exposta, representando o risco mais grave. A segurança eficaz requer uma defesa em profundidade, não apenas um perímetro forte.
