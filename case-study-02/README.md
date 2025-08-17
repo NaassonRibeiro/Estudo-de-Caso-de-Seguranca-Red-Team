@@ -22,20 +22,20 @@ Uma nova investigação de OSINT foi iniciada do zero. Utilizando a análise da 
 * **Descrição:** A reavaliação confirmou que a falha crítica de tratamento de erro na rota `HTTP/HTTPS`, detalhada no Estudo de Caso 01, **não foi corrigida**. A aplicação continuava vulnerável à mesma técnica de manipulação de requisições, expondo versões de software, paths de diretórios e código-fonte.
 * **Impacto:** O risco de Execução Remota de Código (RCE) e comprometimento do servidor permanecia ativo, indicando uma falha no processo de remediação da empresa.
 * **Evidência:**
-    ![Prova de Conceito Sanitizada - Recriação do Erro na Aplicação Web](./evidence/webapp-vulneravel.png)
+    ![Prova de Conceito Sanitizada - Recriação do Erro na Aplicação Web](./evidence/webapp-vulneravel.jpg)
 
 ### Finding 2.2: (ALTO) Múltiplos Dispositivos de Rede Expostos e Mal Configurados
 * **Descrição:** A varredura da infraestrutura revelou pelo menos dois dispositivos de rede críticos expostos e com serviços vulneráveis.
 * **Dispositivo 1: Roteador Tenda Wireless (GoAhead-webs)**
     * Um roteador Tenda foi encontrado com sua interface de gerenciamento web exposta na porta não-padrão 1984/tcp, uma tática de "segurança por obscuridade". A exposição deste painel administrativo na internet permite que um atacante tente ataques de força bruta (brute-force) ou explore vulnerabilidades conhecidas no servidor GoAhead-webs para obter controle total do dispositivo.
 * **Dispositivo 2: Roteador MikroTik (RouterOS RB750Gr3)**
-    * O roteador foi identificado com o hostname `Nome_da_empresa - almoxarifado`, confirmando sua associação.
+    * O roteador foi identificado com o hostname `empresa - setor`, confirmando sua associação.
     * Duas portas de alto risco estavam abertas para a internet:
         * **161/udp (SNMP):** Se configurado com community strings padrão (ex: "public"), este serviço pode ser usado por um atacante para mapear toda a topologia da rede interna, extrair configurações detalhadas e identificar alvos para ataques posteriores.
         * **2000/tcp (MikroTik Bandwidth-Test):** Este serviço é notoriamente abusado para ataques de negação de serviço (DoS) por amplificação, permitindo que atacantes usem o roteador da empresa para atacar outros alvos na internet.
 * **Impacto:** A exposição desses dispositivos criava múltiplos pontos de entrada para a rede interna e expunha a empresa a riscos de vazamento de informações, negação de serviço e potencial comprometimento da infraestrutura.
 * **Evidência:**
-    ![Prova de Conceito Sanitizada - Scan no MikroTik e Roteador Tenda](./evidence/Mikrotik-vulneravel.png)
+    ![Prova de Conceito Sanitizada - Scan no MikroTik e Roteador Tenda](./evidence/Mikrotik-vulneravel.jpg)
 
 
 ## 4. Conclusão da Análise 2
