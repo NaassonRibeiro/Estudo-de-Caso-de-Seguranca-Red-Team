@@ -1,4 +1,4 @@
-# Estudo de Caso 01: Bypass de WAF e Descoberta de Infraestrutura Exposta
+# Estudo de Caso 01: Análise de Segurança em Aplicação Web e Descoberta de Infraestrutura Exposta
 
 ## 1. Objetivo e Escopo
 O objetivo desta análise foi avaliar a postura de segurança externa de uma empresa corporativa através de uma abordagem de duas frentes:
