@@ -37,4 +37,4 @@ O objetivo desta fase foi contornar o "escudo" da Cloudflare para encontrar os e
     ![Prova de Conceito Sanitizada - Servidor DNS Vulnerável](./evidence/servidor-dns-vulneravel.png)
 
 ## 4. Conclusão da Análise 1
-Esta análise destaca um erro comum de postura de segurança: a **falsa sensação de segurança** gerada por uma única camada de proteção, como a Cloudflare. Enquanto o WAF mitigava ataques básicos, a aplicação continha falhas de lógica e, mais criticamente, rodava em uma plataforma com vulnerabilidades de RCE conhecidas e ativamente exploradas, e a infraestrutura legada permanecia completamente exposta.
+Esta análise destaca um erro comum de postura de segurança: a **falsa sensação de segurança** gerada por uma única camada de proteção, como a Cloudflare. Enquanto o WAF mitigava ataques básicos, a aplicação continha falhas de lógica e, mais criticamente, rodava em uma plataforma com vulnerabilidades de RCE conhecidas, ativamente exploradas, e a infraestrutura legada permanecia completamente exposta.
