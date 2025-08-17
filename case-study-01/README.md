@@ -31,7 +31,7 @@ A investigação da infraestrutura foi realizada a partir do `WHOIS` e do mapeam
 
 ### Finding 1.2: (ALTO) Exposição de Infraestrutura de Servidores Legados
 * **Descrição:** Servidores da infraestrutura antiga da empresa foram encontrados ativos e acessíveis publicamente na internet.
-* **Impacto:** Scans de portas revelaram serviços desatualizados com vulnerabilidades de criticidade média a alta, representando um ponto de entrada fácil para a rede corporativa.
+* **Impacto:** Scans de portas revelaram serviços desatualizados com vulnerabilidades de criticidade média a alta, representando um possível ponto de entrada para a rede corporativa.
 * **Evidência:**
     ![Prova de Conceito Sanitizada - Scan em Servidor Legado](./evidence/Servidor-vulneravel.png)
 
