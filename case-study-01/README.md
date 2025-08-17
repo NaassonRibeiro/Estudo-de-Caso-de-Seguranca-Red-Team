@@ -7,7 +7,7 @@ O objetivo desta análise autorizada era identificar vulnerabilidades na aplica�
 A análise combinou uma exploração manual e criativa da aplicação web com uma fase de OSINT e varredura de rede na infraestrutura externa, evitando o uso de scanners automatizados intrusivos.
 
 ### Fase 1: Reconhecimento e Hipótese Inicial (Pivô)
-A investigação sobre o desenvolvedor da aplicação web levantou suspeitas sobre o uso de tecnologias desatualizadas, motivando uma análise mais profunda em busca de falhas de configuração.
+A investigação sobre o desenvolvedor da aplicação web acessível no rodapé do alvo levantou suspeitas sobre o uso de tecnologias desatualizadas, motivando uma análise mais profunda em busca de falhas de configuração.
 
 ### Fase 2: Exploração Manual da Aplicação Web
 A manipulação de rotas `HTTP/HTTPS` em cenários incomuns forçou a aplicação a um estado de erro, contornando as proteções e expondo a página de debug nativa do PHP.
