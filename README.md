@@ -1,6 +1,6 @@
 # Portfólio de Análise de Segurança da Informação
 
-Olá! Meu nome é Naasson Ribeiro e este repositório serve como um portfólio prático, demonstrando minhas habilidades em Análise de Vulnerabilidades, Testes de Penetração e Open-Source Intelligence (OSINT).
+Olá! Meu nome é Naasson Ribeiro e este repositório serve como um portfólio prático, demonstrando minhas habilidades em Análise de Vulnerabilidades, Pentest e Open-Source Intelligence (OSINT).
 
 Todos os estudos de caso aqui apresentados foram realizados de forma **ética, autorizada e completamente anonimizada** para proteger a confidencialidade das organizações envolvidas. O foco é na metodologia, no raciocínio investigativo e nas habilidades técnicas aplicadas.
 
