@@ -14,7 +14,7 @@ A abordagem foi dividida em duas frentes de investigação paralelas.
 O foco foi recriar a exploração da falha de roteamento `HTTP/HTTPS` identificada anteriormente. A replicação manual inicial se mostrou inconsistente, indicando uma possível correção parcial ou uma falha intermitente. Para garantir um resultado definitivo, utilizei o **Burp Suite** para automatizar e manipular um volume maior de requisições malformadas, conseguindo, por fim, forçar a aplicação ao mesmo estado de `crash` e exposição de dados.
 
 ### Fase 2: OSINT e Descoberta de Ativos de Rede
-Uma nova investigação de OSINT foi iniciada do zero. Utilizando a análise da árvore BGP, geolocalização e varredura de ranges de IP, foi possível identificar a nova pegada de rede da empresa e descobrir múltiplos dispositivos de rede expostos publicamente.
+Uma nova investigação de OSINT foi iniciada do zero. Utilizando internet scanners, análise da árvore BGP, geolocalização, Web Archaeology e análise de ranges, foi possível identificar a uma pegada de rede da empresa e descobrir múltiplos dispositivos expostos publicamente.
 
 ## 3. Descobertas (Findings)
 
@@ -41,4 +41,4 @@ Uma nova investigação de OSINT foi iniciada do zero. Utilizando a análise da 
 
 ## 4. Conclusão da Análise 2
 
-A reavaliação demonstrou falhas sistêmicas na postura de segurança da organização. Além da falha em remediar uma vulnerabilidade crítica já reportada na aplicação web, a falta de uma gestão de ativos de rede eficaz resultou na exposição de múltiplos dispositivos de infraestrutura. Isso indica a necessidade de um programa de segurança mais robusto, incluindo um processo formal de gestão de vulnerabilidades (patch management) e auditorias regulares do perímetro de rede.
+A reavaliação demonstrou falhas sistêmicas na postura de segurança da organização. Além da falha em remediar uma vulnerabilidade crítica já reportada na aplicação web, a falta de uma gestão de ativos de rede eficaz resultou na exposição de múltiplos dispositivos de infraestrutura. Um novo relatório foi encaminhado com novas sugestões de coreções e melhorias, a necessidade de um programa de segurança mais robusto, incluindo um processo formal de gestão de vulnerabilidades (patch management) e auditorias regulares do perímetro de rede distribuido.
