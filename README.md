@@ -8,7 +8,7 @@ Todos os estudos de caso aqui apresentados foram realizados de forma **ética, a
 
 ## Habilidades e Competências Demonstradas
 
-* **Inteligência de Fontes Abertas (OSINT):** Coleta e análise de informações passivas (WHOIS, AS Number, BGP routing, `archive.org`).
+* **Inteligência de Fontes Abertas (OSINT):** Coleta e análise de informações passivas (WHOIS, AS Number, BGP routing, Google Hacking, Web Archaeology, Burp Suite).
 * **Análise de Vulnerabilidades (Black Box):** Testes manuais em aplicações web, sem o uso de scanners automatizados intrusivos.
 * **Pensamento Investigativo:** Elaboração de hipóteses (ex: reutilização de código por desenvolvedores) e pivoteamento da investigação com base em novas informações.
 * **Análise de Infraestrutura de Rede:** Mapeamento de ranges de IP, identificação de hosts ativos e serviços expostos de forma não intrusiva.
