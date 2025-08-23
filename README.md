@@ -19,7 +19,7 @@ Todos os estudos de caso aqui apresentados foram realizados de forma **ética, a
 
 ## Estudos de Caso
 
-### 📂 [Estudo de Caso 01: Avaliação de Vulnerabilidade em Aplicação Web e Infraestrutura Externa](./case-study-01/README.md)
+### 📂 [Estudo de Caso 01: Avaliação de Vulnerabilidades em Aplicações Web e Infraestrutura Legada](./case-study-01/README.md)
 * **Descrição:** Uma análise aprofundada, que começou em uma aplicação web protegida por WAF (Cloudflare), expandiu-se e resultou na descoberta de vulnerabilidades críticas, desde a aplicação principal até falhas de exposição de informações na infraestrutura legada e vulnerável da organização.
 * **Tags:** `Web Security`, `OSINT`, `Footprinting`, `Information Disclosure`, `CVE Analysis`
 
