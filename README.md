@@ -23,6 +23,6 @@ Todos os estudos de caso aqui apresentados foram realizados de forma **ética, a
 * **Descrição:** Uma análise aprofundada, que começou em uma aplicação web protegida por WAF (Cloudflare), expandiu-se e resultou na descoberta de vulnerabilidades críticas, desde a aplicação principal até falhas de exposição de informações na infraestrutura legada e vulnerável da organização.
 * **Tags:** `Web Security`, `OSINT`, `Footprinting`, `Information Disclosure`, `CVE Analysis`
 
-### 📂 [Estudo de Caso 02: Análise de Acompanhamento e Descoberta de Dispositivo de Rede Vulnerável](./case-study-02/README.md)
+### 📂 [Estudo de Caso 02: Análise de Acompanhamento e Descoberta de Dispositivos de Rede Vulneráveis](./case-study-02/README.md)
 * **Descrição:** Uma reavaliação da postura de segurança da organização, conduzida após o primeiro relatório, identificou via OSINT equipamentos vulneráveis (MikroTik, Tenda) atrelados à empresa. A descoberta foi validada por geolocalização, confirmando a existência de um perímetro de rede distribuido exposto e desatualizado.
 * **Tags:** `OSINT`, `Network Security`, `IoT Security`, `Remediation Verification`
